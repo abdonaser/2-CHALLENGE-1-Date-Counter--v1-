@@ -25,6 +25,12 @@ function DataCounterV2() {
     newDateInstance.setDate(newDateInstance.getDate() + count); // Modify the date
     setNewDate(formattedDate(newDateInstance)); // Format and set newDate
   }, [count, date]); // Include `date` dependency for consistency
+
+  const handleReset = () => {
+    setStep(1);
+    setCount(0);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center  bg-gradient-to-b from-orange-100 to-orange-300  font-sans px-4 mx-auto w-1/2 py-5 mb-5 text-black">
       <h1 className="text-4xl font-bold mb-5 ">The Date</h1>
@@ -75,6 +81,16 @@ function DataCounterV2() {
               }`}{" "}
           <span className="font-bold">{newDate}</span>
         </p>
+
+        {count !== 0 || step !== 1 ? (
+          <div className="flex items-center justify-center my-5 py-1">
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+              onClick={handleReset}>
+              Reset
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
